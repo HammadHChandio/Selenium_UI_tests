@@ -1,43 +1,77 @@
 ﻿using System;
 using TechTalk.SpecFlow;
 using OpenQA.Selenium;
-using Selenium.UI.test.Drivers;
+using Selenium.UI.test.Pages;
+using System.Configuration;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using SeleniumGridSpecFlow.Common;
 
 namespace Selenium.UI.test.Steps
 {
     [Binding]
     public class SearchBarSteps
     {
-       
+        private ISearchPage _page;
+        [BeforeScenario]
+        public void Setup()
+        {
+            System.Console.Write("Scenarios Setup.\r\n");
+
+            var appSettings = ConfigurationManager.AppSettings;
+            string[] browsers = appSettings["Browsers"].Split(';');
+
+            var pages = new ConcurrentStack<ISearchPage>();
+            foreach (string browser in browsers)
+            {
+                if (browser == "Chrome")
+                    Parallel.Invoke(() => pages.Push(new SearchPage<ChromeGrid>()));
+                if (browser == "Firefox")
+                    Parallel.Invoke(() => pages.Push(new SearchPage<FireFoxGrid>()));
+                if (browser == "IE")
+                    Parallel.Invoke(() => pages.Push(new SearchPage<InternetExplorerGrid>()));
+            }
+            var parallelPage = new ParallelModel<ISearchPage>(pages.ToArray());
+            _page = parallelPage.Cast();
+
+        }
+        [AfterScenario]
+        public void Teardown()
+        {
+            Console.Write("Scenarios tear down.\r\n");
+            _page.Close();
+
+        }
+
 
         [Given(@"Amazon site is available")]
         public void GivenAmazonSiteIsAvailable()
         {
-            Driverhook.driver.Navigate().GoToUrl("https://www.amazon.co.uk");
+          //
         }
         
         [Given(@"Search bar is available")]
         public void GivenSearchBarIsAvailable()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
         
         [Given(@"I want to search for ""(.*)""")]
         public void GivenIWantToSearchFor(string item)
         {
-            ScenarioContext.Current.Pending();
+          //  _page.Fillinsearchbar(item);
         }
         
         [When(@"I press search")]
         public void WhenIPressSearch()
         {
-            ScenarioContext.Current.Pending();
+           // ScenarioContext.Current.Pending();
         }
         
         [Then(@"I should see result for thinkpads")]
         public void ThenIShouldSeeResultForThinkpads()
         {
-            ScenarioContext.Current.Pending();
+           // ScenarioContext.Current.Pending();
         }
     }
 }
