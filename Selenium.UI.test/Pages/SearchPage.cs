@@ -26,6 +26,7 @@ namespace Selenium.UI.test.Pages
         }
         #region Element
         private By searchInput = By.Id("twotabsearchtextbox");
+        private By searchbtn = By.XPath("//*[@id=nav - search]/form/div[2]/div/input");
         #endregion
 
         public void Fillinsearchbar(string Product1)
@@ -36,6 +37,11 @@ namespace Selenium.UI.test.Pages
         public void Close()
         {
             webDriver.Dispose();
+        }
+
+        public void WhenIClicksearchbutton()
+        {
+            webDriver.FindElement(searchbtn).Click();
         }
     }
 }

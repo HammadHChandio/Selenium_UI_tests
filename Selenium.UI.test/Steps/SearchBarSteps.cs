@@ -38,7 +38,7 @@ namespace Selenium.UI.test.Steps
         [AfterScenario]
         public void Teardown()
         {
-            Console.Write("Scenarios tear down.\r\n");
+            //Console.Write("Scenarios tear down.\r\n");
             _page.Close();
 
         }
@@ -59,13 +59,13 @@ namespace Selenium.UI.test.Steps
         [Given(@"I want to search for ""(.*)""")]
         public void GivenIWantToSearchFor(string item)
         {
-          //  _page.Fillinsearchbar(item);
+            _page.Fillinsearchbar(item);
         }
         
         [When(@"I press search")]
         public void WhenIPressSearch()
         {
-           // ScenarioContext.Current.Pending();
+           _page.WhenIClicksearchbutton();
         }
         
         [Then(@"I should see result for thinkpads")]

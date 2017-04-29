@@ -14,8 +14,11 @@ namespace Selenium.UI.test.Pages
     {
         void Fillinsearchbar(string Product1);
         void Close();
+        void WhenIClicksearchbutton();
+        
 
     }
+
 
     public class BasePage
     {
