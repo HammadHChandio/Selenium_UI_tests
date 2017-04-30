@@ -6,11 +6,12 @@ using System.Configuration;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using SeleniumGridSpecFlow.Common;
+using Selenium.UI.test.Model;
 
-namespace Selenium.UI.test.Steps
+namespace Selenium.UI.test.StepsDef
 {
     [Binding]
-    public class SearchBarSteps
+    public class SearchBarSteps : Steps
     {
         private ISearchPage _page;
         [BeforeScenario]
@@ -65,7 +66,7 @@ namespace Selenium.UI.test.Steps
         [When(@"I press search")]
         public void WhenIPressSearch()
         {
-           _page.WhenIClicksearchbutton();
+           //_page.WhenIClicksearchbutton();
         }
         
         [Then(@"I should see result for thinkpads")]

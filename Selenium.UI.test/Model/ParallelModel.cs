@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Selenium.UI.test.Pages
+namespace Selenium.UI.test.Model
 {
     class ParallelModel<T> : DynamicObject
     {
