@@ -76,7 +76,6 @@
     <Compile Include="Common\ChromeGrid.cs" />
     <Compile Include="Common\FireFoxGrid.cs" />
     <Compile Include="Common\InternetExplorerGrid.cs" />
-    <Compile Include="Drivers\Driverhook.cs" />
     <Compile Include="Features\SearchBar.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,9 +85,10 @@
     <Compile Include="Pages\IBasePage.cs" />
     <Compile Include="Pages\SearchPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\SearchBarSteps.cs" />
+    <Compile Include="StepsDef\SearchBarSteps.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Drivers\" />
     <Folder Include="OR\" />
     <Folder Include="Utils\" />
   </ItemGroup>
